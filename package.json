@@ -4,13 +4,15 @@
   "description": "\"Shopping app using MEAN stack\"",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/ChintanRP11/MEAN-Project.git"
   },
-  "author": "\"Chintankumar Pansuriya\"",
+  "author": "Chintankumar Pansuriya",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ChintanRP11/MEAN-Project/issues"
