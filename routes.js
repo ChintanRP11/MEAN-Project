@@ -20,13 +20,14 @@ const requestHandler = (req, res) => {
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt', message, (err) => {
+            fs.writeFile('message.txt', message, (err) => {
                 res.statusCode=302;
                 res.setHeader('Location','/');
                 return res.end();
             });
         });
     }
+    
     res.setHeader('Content-Type', 'text/html');
     res.write('<html><head><title>First App</title></head><body>Hello this is first app</body></html>');
     res.end();
