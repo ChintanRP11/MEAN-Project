@@ -50,4 +50,4 @@ const requestHandler = (req, res) => {
 
 // short method
 exports.handler = requestHandler;
-exports.someText = 'Some hard coded text for test';
+exports.someText = 'Some hard coded text for test2';

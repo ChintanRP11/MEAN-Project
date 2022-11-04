@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/ChintanRP11/MEAN-Project.git"
   },
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ChintanRP11/MEAN-Project/issues"
   },
-  "homepage": "https://github.com/ChintanRP11/MEAN-Project#readme"
+  "homepage": "https://github.com/ChintanRP11/MEAN-Project#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
