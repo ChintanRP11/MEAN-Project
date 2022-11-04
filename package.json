@@ -1,0 +1,19 @@
+{
+  "name": "mean-stack-project",
+  "version": "1.0.0",
+  "description": "\"Shopping app using MEAN stack\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChintanRP11/MEAN-Project.git"
+  },
+  "author": "\"Chintankumar Pansuriya\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChintanRP11/MEAN-Project/issues"
+  },
+  "homepage": "https://github.com/ChintanRP11/MEAN-Project#readme"
+}
