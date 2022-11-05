@@ -1,26 +1,18 @@
 const express = require('express');
+const path = require('path');
 
-// express application => middlewares
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 const app = express();
 
-// use() allows to add new middleware function which runs on every incoming requests on server.
-// next() allows the request to move on next middleware in line
-app.use((req, res, next) => {
-    console.log("in the middleware");
-    next();
-});
-app.use((req, res, next) => {
-    console.log("in the another middleware");
-    res.send("<h1>Hello from express middleware!</h1>") // allows to send response with html text and adds required html code.
+app.use(express.urlencoded({extended: true}));
+
+app.use('/admin',adminRoutes);
+app.use(shopRoutes);
+
+app.use((req, res, next)=>{
+    res.status(404).sendFile(path.join(__dirname,'views', '404.html'));
 });
 
-
-// // creating server
-// // creating server and handling requests with routes.handler property
-// const server = http.createServer(app);
-
-// // server is listening on port 3000
-// server.listen(3000);
-
-//express js shorten the server creation code
 app.listen(3000);
