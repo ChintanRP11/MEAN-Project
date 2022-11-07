@@ -1,1 +1,16 @@
-[{"id":"1233","title":"book 1","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"First book ever","price":"12.22"},{"title":"book4","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"New book with id","price":"11.09","id":"0.5027597650589717"},{"title":"Good Book","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"This is good book in this shop","price":"35.65","id":"0.26487786568230476"},{"title":"book4","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"book4","price":"11.19","id":"0.6451126953079018"},{"id":"0.9782539827651919","title":"book4","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"book4","price":"11.49"},{"id":"0.818072821449835","title":"last 56","imageUrl":"https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq","description":"book sdfa","price":"21.29"}]
+[
+  {
+    "id": "1233",
+    "title": "book 1",
+    "imageUrl": "https://qph.cf2.quoracdn.net/main-qimg-84610dbf5532f036eaeebf8c64ba7d69-lq",
+    "description": "First book ever",
+    "price": "12.22"
+  },
+  {
+    "id": "0.3260894991371357",
+    "title": "New JAVA",
+    "imageUrl": "https://m.media-amazon.com/images/I/51wuK0BoXIL.jpg",
+    "description": "New version of JAVA programming A to Z",
+    "price": "33.12"
+  }
+]
