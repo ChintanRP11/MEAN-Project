@@ -8,7 +8,8 @@ const sequelize = require('./util/database');
 
 const Product = require('./models/product');
 const User = require('./models/user');
-
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 const app = express();
 
@@ -38,19 +39,25 @@ app.use(errorController.get404);
 // associations
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 // sync all models to SQL database: create tables according to models if not exists
 sequelize
     .sync()
+    // .sync({force: true})
     .then(result => {
         return User.findByPk(1);
-        
     }).then(user => {
         if (!user) {
-            return User.create({name: 'Chintan', email: 'test@test.com'});
+            return User.create({name: 'Chintan', email: 'test@test.com'})
+            .then(user => {
+                return user.createCart();
+            }).catch(err => console.log(err));
         }
         return user;
-    }).then(user => {
+    }).then(cart => {
         // console.log(user);
         app.listen(3000);
     }).catch(err => console.log(err));
