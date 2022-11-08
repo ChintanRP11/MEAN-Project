@@ -15,17 +15,17 @@ module.exports = class Product {
 
     save() {
         return db.execute(
-            'INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)',
+            'INSERT INTO products-SQL (title, price, imageUrl, description) VALUES (?, ?, ?, ?)',
             [this.title, this.price, this.imageUrl, this.description]
         );
     }
 
     static fetchAll(cb) {
-        return db.execute('SELECT * FROM products');
+        return db.execute('SELECT * FROM products-SQL');
     }
 
     static findById(id) {
-        return db.execute('SELECT * FROM products WHERE products.id = ?', [id]);
+        return db.execute('SELECT * FROM products-SQL WHERE products.id = ?', [id]);
     }
 
     static deleteById(id) {
