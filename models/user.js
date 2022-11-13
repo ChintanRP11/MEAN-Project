@@ -88,6 +88,34 @@ class User {
                 {$set: {cart: {items: updatedCartItems}}}
             );
     }
+
+    addOrder() {
+        const db = getDb();
+        return db.collection('orders')
+            .insertOne(this.cart)
+            .then(result => {
+                this.cart = {items: []};
+                return db.collection('users')
+                .updateOne(
+                    {_id: new ObjectId(this._id)},
+                    {$set: {cart: this.cart}}
+                );
+            })
+            .catch(err => {console.log(err)});
+    }
+
+    getOrders() {
+        const db = getDb();
+
+        return db.collection('orders')
+            .find()
+            .toArray()
+            .then(orders => {
+                console.log("from user model",orders);
+                return orders;
+            })
+            .catch(err => {console.log(err)});
+    }
 };
 
 module.exports = User;
