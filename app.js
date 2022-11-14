@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-    User.findById("63712dffcefbca2c65a1adcc")
+    User.findById("6372a18b1d5400e20617907d")
         .then(user => {
-            req.user = new User(user.username, user.email, user.cart, user._id);
+            req.user = user;
             next();
         })
         .catch(err => console.log(err));;
@@ -32,8 +32,20 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoose.connect('mongodb+srv://chintan-mongodb:7I5VwbOKb5jMMVVi@project-mean-stack.6ifabul.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://chintan-mongodb:7I5VwbOKb5jMMVVi@project-mean-stack.6ifabul.mongodb.net/shop?retryWrites=true&w=majority')
     .then(result => {
+        User.findOne().then(user => {
+            if (!user){
+                const user = new User({
+                    name: 'Chintan',
+                    email: 'test@test.com',
+                    cart: {
+                        items: []
+                    }
+                });
+                user.save();
+            }
+        });
         app.listen(3000);
     }).catch(err => console.log(err));
 
