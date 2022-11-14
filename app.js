@@ -2,9 +2,9 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user');
 
 const app = express();
@@ -32,12 +32,11 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-    // if (req.user){
+mongoose.connect('mongodb+srv://chintan-mongodb:7I5VwbOKb5jMMVVi@project-mean-stack.6ifabul.mongodb.net/?retryWrites=true&w=majority')
+    .then(result => {
+        app.listen(3000);
+    }).catch(err => console.log(err));
 
-    // }
-    app.listen(3000);
-});
 
 
 
