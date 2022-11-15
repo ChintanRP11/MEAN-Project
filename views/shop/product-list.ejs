@@ -8,7 +8,8 @@
             <main>
                 <% if (prods.length > 0) { %>
                     <div class="grid">
-                        <% for (let product of prods) { %>
+                        <% for (let product of prods) { 
+                            if (!product.deleted) { %>
                             <article class="card product-item">
                                 <header class="card__header">
                                     <h1 class="product__title">
@@ -29,7 +30,7 @@
                                     <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                                 </div>
                             </article>
-                            <% } %>
+                            <% } } %>
                     </div>
                     <% } else { %>
                         <h1>No Products Found!</h1>
