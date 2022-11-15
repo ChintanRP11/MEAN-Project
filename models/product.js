@@ -1,6 +1,4 @@
-// const getDb = require('../util/database').getDb;
 const mongoose = require('mongoose');
-const { DOUBLE } = require('sequelize');
 
 const Schema = mongoose.Schema;
 
