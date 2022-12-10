@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
@@ -14,9 +15,13 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    session({secret: 'my secret', resave: false, saveUninitialized: false})
+);
 
 app.use((req, res, next) => {
     User.findById("6372a18b1d5400e20617907d")
@@ -29,10 +34,11 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 
-mongoose.connect('mongodb+srv://chintan-mongodb:7I5VwbOKb5jMMVVi@project-mean-stack.6ifabul.mongodb.net/shop?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://chintan-mongodb:WHLXGPwtSUScuV0V@project-mean-stack.6ifabul.mongodb.net/shop?retryWrites=true&w=majority')
     .then(result => {
         User.findOne().then(user => {
             if (!user){
