@@ -6,11 +6,11 @@ const product = require('./product');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    name: {
+    email: {
         type: String,
         required: true
     },
-    email: {
+    password: {
         type: String,
         required: true
     },

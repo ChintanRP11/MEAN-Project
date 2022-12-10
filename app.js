@@ -50,18 +50,6 @@ app.use(errorController.get404);
 
 mongoose.connect(MONGODBURI)
     .then(result => {
-        User.findOne().then(user => {
-            if (!user){
-                const user = new User({
-                    name: 'Chintan',
-                    email: 'test@test.com',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
         app.listen(3000);
     }).catch(err => console.log(err));
 
