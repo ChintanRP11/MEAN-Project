@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
@@ -87,9 +87,10 @@ exports.postLogin = (req,res, next) => {
             });
         })
         .catch(err => {
-            console.log(err);
-            res.redirect('/');
-        })
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
     })
     .catch(err => console.log(err));
 }
@@ -159,7 +160,11 @@ exports.postSignup = (req, res, next) => {
             }
         
         }).catch(err => {console.log(err)});
-    }).catch(err => {console.log(err)});
+    }).catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 };
 
 exports.postLogout = (req, res, next) => {
@@ -217,8 +222,10 @@ exports.postReset = (req,res,next) => {
                 }
               });
         }).catch(err => {
-            console.log(err);
-        })
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
     })
 }
 
@@ -262,5 +269,9 @@ exports.postNewPassword = (req, res, next) => {
         return resetUser.save()
     }).then(result => {
         res.redirect('/login')
-    }).catch(err => console.log(err))
+    }).catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 }
