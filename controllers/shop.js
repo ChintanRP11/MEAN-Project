@@ -5,6 +5,7 @@ const PDFDocument = require('pdfkit');
 
 const Product = require('../models/product');
 const Order = require('../models/order');
+const stripe = require('stripe')('sk_test_51MQhYfAXHZ8HqsvZwhGwxYTjKfopIEPJZClbssDkr5kECMA0MAgwz16b3zfsd36CqYqk5EOsKvxgYd4F7LNglQMV00b1y7Vrv1');
 
 const ITEMS_PER_PAGE = 2;
 
@@ -127,10 +128,40 @@ exports.postCartDeleteProduct = (req, res, next) => {
         });
 };
 
-exports.postOrder= (req, res, next) => {
+exports.getCheckout = (req, res, next) => {
     req.user
         .populate('cart.items.productId')
         .then(user => {
+            const products = user.cart.items
+            let total = 0;
+            products.forEach(p => {
+                total += p.quantity * p.productId.price;
+            });
+            res.render('shop/checkout', {
+                products: products,
+                pageTitle: 'Checkout',
+                path: '/checkout',
+                totalSum: total
+            });
+        }).catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postOrder= (req, res, next) => {
+    // Token is created using Checkout or Elements!
+    // Get the payment token ID submitted by the form:
+    const token = req.body.stripeToken; // Using Express
+    let totalSum = 0;
+    req.user
+        .populate('cart.items.productId')
+        .then(user => {
+            user.cart.items.forEach(p => {
+                totalSum += p.quantity * p.productId.price;
+            });
+            
             const products = user.cart.items.map(i => {
                 return {quantity: i.quantity, product: { ...i.productId._doc } }
             });
@@ -144,12 +175,20 @@ exports.postOrder= (req, res, next) => {
             return order.save();
         })
         .then(result => {
+            const charge = stripe.charges.create({
+                amount: totalSum * 100,
+                currency: 'usd',
+                description: 'Demo Order',
+                source: token,
+                metadata: {order_id: result._id.toString()}
+            });
             return req.user.clearCart();
         })
         .then(result => {
             res.redirect('/orders');
         })
         .catch(err => {
+            console.log(err);
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);
