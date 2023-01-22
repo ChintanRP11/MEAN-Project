@@ -5,7 +5,7 @@ const PDFDocument = require('pdfkit');
 
 const Product = require('../models/product');
 const Order = require('../models/order');
-const stripe = require('stripe')('sk_test_51MQhYfAXHZ8HqsvZwhGwxYTjKfopIEPJZClbssDkr5kECMA0MAgwz16b3zfsd36CqYqk5EOsKvxgYd4F7LNglQMV00b1y7Vrv1');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const ITEMS_PER_PAGE = 2;
 
@@ -41,7 +41,6 @@ exports.getProduct = (req, res, next) => {
     // Product.findOne({ where: { id: prodId } })
     Product.findById(prodId)
         .then(product => {
-            console.log(product);
             res.render('shop/product-detail', {
                 product: product,
                 pageTitle: product.title,
@@ -118,7 +117,6 @@ exports.postCartDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
     req.user.deleteFromCart(prodId)
         .then(result => {
-            console.log("Product removed from cart");
             res.redirect('/cart');
         })
         .catch(err => {
@@ -188,7 +186,6 @@ exports.postOrder= (req, res, next) => {
             res.redirect('/orders');
         })
         .catch(err => {
-            console.log(err);
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);

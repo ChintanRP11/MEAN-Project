@@ -9,7 +9,6 @@ exports.getProducts = (req, res, next) => {
         // .select('title price -_id')
         .populate('userId', 'name')
         .then(products => {
-            console.log(products);
             res.render('admin/products', {
                 prods: products,
                 pageTitle: 'Admin Products',
@@ -86,7 +85,6 @@ exports.postAddProduct = (req,res,next) => {
 
     product.save()
         .then(result => {
-            console.log('Created Product');
             res.redirect('/admin/products');
         }).catch(err => {
             const error = new Error(err);
@@ -132,7 +130,6 @@ exports.postEditProduct = (req,res,next) => {
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
     const errors = validationResult(req);
-    console.log(errors.array());
     if(!errors.isEmpty()) {
         return res.status(422).render('admin/edit-product', {
             pageTitle: 'Edit Product',
@@ -164,7 +161,6 @@ exports.postEditProduct = (req,res,next) => {
                 product.imageUrl = image.path;
             }
             return product.save().then(result => {
-                console.log('Product Updated');
                 res.redirect('/admin/products');
             });
         }).catch(err => {

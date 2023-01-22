@@ -14,7 +14,8 @@ const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
-const MONGODBURI = "mongodb+srv://chintan-mongodb:WHLXGPwtSUScuV0V@project-mean-stack.6ifabul.mongodb.net/shop?retryWrites=true&w=majority"
+
+const MONGODBURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@project-mean-stack.6ifabul.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 
 const app = express();
 const store = new MongoDBStore({
@@ -111,7 +112,7 @@ app.use((error, req, res, next) => {
 
 mongoose.connect(MONGODBURI)
     .then(result => {
-        app.listen(3000);
+        app.listen(process.env.PORT || 3000);
     }).catch(err => console.log(err));
 
 

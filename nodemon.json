@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MONGO_USER": "chintan-mongodb",
+        "MONGO_PASS": "WHLXGPwtSUScuV0V",
+        "MONGO_DB": "SHOP",
+        "STRIPE_KEY": "sk_test_51MQhYfAXHZ8HqsvZwhGwxYTjKfopIEPJZClbssDkr5kECMA0MAgwz16b3zfsd36CqYqk5EOsKvxgYd4F7LNglQMV00b1y7Vrv1"
+    }
+}
