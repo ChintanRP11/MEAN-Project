@@ -1,7 +1,7 @@
 {
-  "name": "mean-stack-project",
+  "name": "nodejs-shopping-app",
   "version": "1.0.0",
-  "description": "\"Shopping app using MEAN stack\"",
+  "description": "\"Shopping app using Node, Express and MongoDB\"",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
