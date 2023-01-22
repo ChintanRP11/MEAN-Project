@@ -5,6 +5,9 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
         <main>
+            <div class="centered">
+                <h2>Confirm Your Order</h2>
+            </div>
             <ul class="cart__item-list">
                 <% products.forEach(p => { %>
                     <li class="cart__item">
@@ -17,7 +20,7 @@
                 <h2>Total: $<%= totalSum %></h2>
             </div>
             <div class="centered">
-                <form action="/create-order" method="POST">
+                <!-- <form action="/orders" method="POST">
                     <script
                       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="pk_test_51MQhYfAXHZ8HqsvZjlPLkPXOEa2gK2ca8daerb9kWi7WQqDXhrtDUrN38wlMksPyLBjtFFQcf18cH0WJWGDAxws800CWluh4b1"
@@ -28,8 +31,11 @@
                       data-locale="auto"
                       data-currency="usd">
                     </script>
-                    
-                  </form>
+                </form> -->
+                <form action="/create-order" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn" type="submit">Place Order</button>
+                </form>
             </div>
         </main>
         <%- include('../includes/end.ejs') %>

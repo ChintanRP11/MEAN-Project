@@ -8,6 +8,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const helmet = require('helmet');
 
 const errorController = require('./controllers/error');
 const shopController = require('./controllers/shop');
@@ -49,6 +50,8 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
+app.use(helmet())
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));  //middleware which serves the files in this folder as root folder
@@ -87,7 +90,6 @@ app.use((req, res, next) => {
       });
   });
 
-app.post('/create-order', isAuth, shopController.postOrder);
 app.use(csrfProtection);
 
 app.use((req, res, next)=> {

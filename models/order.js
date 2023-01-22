@@ -1,3 +1,4 @@
+const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -11,6 +12,6 @@ const orderSchema = new Schema({
         email: {type: String, required: true},
         userId: { type: Schema.Types.ObjectId, required: true, ref: 'User'}
     }
-});
+}, { timestamps: { createdAt: true, updatedAt: false }});
 
 module.exports = mongoose.model('Order', orderSchema);
