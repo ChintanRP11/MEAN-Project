@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const multer = require('multer');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const compression = require('compression');
 
 const errorController = require('./controllers/error');
 const shopController = require('./controllers/shop');
@@ -57,6 +58,7 @@ const accessLogStream = fs.createWriteStream(
 );
 
 app.use(helmet());
+app.use(compression());
 app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use(bodyParser.urlencoded({ extended: false }));
