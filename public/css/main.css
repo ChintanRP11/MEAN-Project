@@ -13,11 +13,22 @@ body {
 main {
   padding: 1rem;
   margin: auto;
+  margin-bottom: 4rem;
 }
 
 form {
   display: inline;
 }
+
+.footer-main {
+  width: 100%;
+  background-color: #00695c;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  color: white;
+}
+
 
 .centered {
   text-align: center;
@@ -260,6 +271,8 @@ form {
   background: #00695c;
   color: white;
 }
+
+
 
 @media (min-width: 768px) {
   .main-header__nav {

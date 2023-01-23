@@ -208,7 +208,7 @@ exports.postReset = (req,res,next) => {
                 subject: 'Password Reset',
                 html: `
                     <p>You requested a password reset</p>
-                    <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
+                    <p>Click this <a href="https://shop-app-nodejs.herokuapp.com/reset/${token}">link</a> to set a new password.</p>
                 `
             }
             transporter.sendMail(mailOptions, function(error, info){
