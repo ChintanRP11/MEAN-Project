@@ -30,6 +30,10 @@ Shopping Web-App built Using NodeJS, ExpressJS, MongoDB/Mongoose, Third-party AP
 
 **Muster**: parsing image files as binary object
 
+**Stripe**: to implement payment feature using Third Party Stripe API
+
+**pdfkit**: to create PDF files of ordered items for users
+
 
 
 
