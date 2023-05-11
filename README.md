@@ -1,6 +1,7 @@
 # NodeJS-Project
 Online Shopping web application where user can view and add products into cart, edit carts, create an order from the cart and generate the bill of orders.
-Apart from that User can also add the products to sell online using admin panel
+Apart from that User can also add the products to sell online using admin panel.
+https://shop-app-nodejs.herokuapp.com/
 
 # Tech Stack
 Shopping Web-App built Using NodeJS, ExpressJS, MongoDB/Mongoose, Third-party APIs, and Other Libraries.
